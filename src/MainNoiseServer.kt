@@ -39,8 +39,8 @@ fun main(argv: Array<String>) {
 
     println("Wait for image")
     val buffImg = ImageIO.read(inpBuff)
-    for (i in 0 until buffImg.height) {
-        for (j in 0 until buffImg.width) {
+    for (i in 1 until buffImg.raster.width) {
+        for (j in 1 until buffImg.raster.height) {
             val rnd = Random().nextInt(100)
             if ( (i+j) % (if (rnd == 0) 1 else rnd) == 0) {
                 buffImg.setRGB(i,j, - Random().nextInt(Math.abs(buffImg.getRGB(i,j))))
@@ -48,7 +48,7 @@ fun main(argv: Array<String>) {
         }
     }
     val noisesOUTSTREAM = ByteArrayOutputStream()
-    ImageIO.write(buffImg, "tiff", noisesOUTSTREAM)
+    ImageIO.write(buffImg, "jpeg", noisesOUTSTREAM)
     outNoise.write(noisesOUTSTREAM.toByteArray())
     outNoise.close()
     print("Image received and sent to main server")

@@ -12,7 +12,7 @@ fun main(argv: Array<String>) {
     val fromserver = Socket(serverName, 4443)
     val out = fromserver.getOutputStream()
 
-    val fis = FileInputStream("C:\\Users\\User\\Desktop\\output.tif")
+    val fis = FileInputStream("C:\\Users\\User\\Desktop\\output.jpg")
     val buff = ByteArray(64)
 
     var byteReads = fis.read(buff)

@@ -18,7 +18,7 @@ fun main(argv: Array<String>) {
         System.exit(-1)
     }
 
-    val fos = FileOutputStream("C:\\Users\\User\\Desktop\\inputImgNoise.tif")
+    val fos = FileOutputStream("C:\\Users\\User\\Desktop\\inputImgNoise.jpg")
 
     try {
         print("Waiting for a client...")
@@ -52,11 +52,11 @@ fun main(argv: Array<String>) {
     servers.close()
     fos.close()
 
-    val fosNormal = FileOutputStream("C:\\Users\\User\\Desktop\\inputImg.tif")
+    val fosNormal = FileOutputStream("C:\\Users\\User\\Desktop\\inputImg.jpg")
     val buffImg = ImageIO.read(ByteArrayInputStream(byteArray))
     val newImg = buffImg
-    for (i in 1 until buffImg.height - 1) {
-        for (j in 1 until buffImg.width - 1) {
+    for (i in 1 until buffImg.width - 1) {
+        for (j in 1 until buffImg.height - 1) {
             val listPixels = arrayListOf(
                     buffImg.getRGB(i - 1, j - 1),
                     buffImg.getRGB(i - 1, j),
@@ -71,7 +71,7 @@ fun main(argv: Array<String>) {
         }
     }
     val noisesOUTSTREAM = ByteArrayOutputStream()
-    ImageIO.write(newImg, "tiff", noisesOUTSTREAM)
+    ImageIO.write(newImg, "jpeg", noisesOUTSTREAM)
     fosNormal.write(noisesOUTSTREAM.toByteArray())
     fosNormal.close()
 }
